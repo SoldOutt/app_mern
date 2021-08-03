@@ -1,0 +1,48 @@
+GET http://localhost:3000/
+
+################################
+Get http://localhost:3000/api/auth
+
+################################
+Post http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "nam", 
+    "password":"nam"
+}
+#########
+Post http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "nam2",
+    "password": "nam"
+}
+#########
+Post http://localhost:3000/api/post
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTA4ZmZmYzk3YWMzYjBmMDhkN2ZkYWMiLCJpYXQiOjE2Mjc5Nzk3NzN9.NGCGyje4JpNJp0zO6H5KwCUwKGFpYowGFPCJkroS4jc
+
+{
+    "title": "cv4",
+    "description": "nhiem vu 4",
+    "url" : "facebook.com",
+    "status": "Learned"
+}
+###
+Get http://localhost:3000/api/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTA4ZmZmYzk3YWMzYjBmMDhkN2ZkYWMiLCJpYXQiOjE2Mjc5Nzk3NzN9.NGCGyje4JpNJp0zO6H5KwCUwKGFpYowGFPCJkroS4jc
+
+
+################################
+PUT http://localhost:3000/api/post/6109002297ac3b0f08d7fdae
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTA4ZmZmYzk3YWMzYjBmMDhkN2ZkYWMiLCJpYXQiOjE2Mjc5Nzk3NzN9.NGCGyje4JpNJp0zO6H5KwCUwKGFpYowGFPCJkroS4jc
+Content-Type: application/json
+
+{
+    "title": "cv1 da sua",
+    "description": "nhiem vu 1 da sua",
+    "url" : "",
+    "status": "Learning"
+}
