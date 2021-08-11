@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post')
 const verifyToken = require('../middleware/auth');
+const User = require('../models/User')
+
 
 //[GET] api/post
 router.get('/', verifyToken, async (req, res) => {

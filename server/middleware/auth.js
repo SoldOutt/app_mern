@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-
+const User = require('../models/User')
 
 //token lay ra tu header co dang :Authorization: Bearer lkdjsdhfasjdkdjsad nen phai lay chuoi tu sau dau space
 const verifyToken = (req, res, next) => {
@@ -11,6 +11,9 @@ const verifyToken = (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
+        // var u = User.findOne({ _id: decoded.userId }).exec((err, data) => {
+        //     console.log(data);
+        // })
         req.userId = decoded.userId
         next()
     }
