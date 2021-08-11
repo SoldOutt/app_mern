@@ -5,7 +5,6 @@ import { authReducer } from '../reducers/authReducer'
 import setAuthToken from '../utils/setAuthToken'
 export const AuthContext = createContext()
 
-
 const AuthContextProvider = ({ children }) => {
     const [authState, dispatch] = useReducer(authReducer, {
         authLoading: true,
@@ -39,6 +38,7 @@ const AuthContextProvider = ({ children }) => {
             const response = await axios.post(`${API_URL}/auth/login`, useForm)
             if (response.data.success) {
                 localStorage.setItem('tokenUser', response.data.acessToken)
+                loadUser()
             }
             return response.data
         }
