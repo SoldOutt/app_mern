@@ -14,6 +14,7 @@ const Login = () => {
             ...loginForm,
             [event.target.name]: event.target.value,
         })
+        setAlert(null)
     }
 
     const history = useHistory()
