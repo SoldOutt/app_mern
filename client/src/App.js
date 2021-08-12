@@ -6,6 +6,7 @@ import Auth from './components/Auth'
 import AuthContextProvider from './contexts/AuthContext'
 import DashBoard from './components/DashBoard'
 import ProtectedRoute from './routing/ProtectedRoute'
+import About from './components/About'
 function App() {
     return (
         <AuthContextProvider>
@@ -31,6 +32,11 @@ function App() {
                         exact
                         path="/dashboard"
                         component={DashBoard}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/about"
+                        component={About}
                     />
                 </Switch>
             </Router>
