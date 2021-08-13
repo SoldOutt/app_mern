@@ -26,7 +26,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTA5Z
 
 {
     "title": "cv1",
-    "description": "nhiem vu 1",
+    "description": "nhiem vu 12",
     "url" : "facebook.com",
     "status": "Learned"
 }
