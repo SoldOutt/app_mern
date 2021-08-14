@@ -25,10 +25,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTA5ZWNlNDEyNTZhZTNjMTAzOTA5NjciLCJpYXQiOjE2MjgwNDA0Mjl9.dx8vUauKkV1t2DjAtyKVhy3b86cKfayP2XCtl6s9Pqk
 
 {
-    "title": "cv1",
-    "description": "nhiem vu 12",
+    "title": "cv2",
+    "description": "nhiem vu 2",
     "url" : "facebook.com",
-    "status": "Learned"
+    "status": "To Learn"
 }
 ###
 Get http://localhost:3000/api/post

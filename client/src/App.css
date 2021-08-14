@@ -3,6 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.br-success {
+    border: 1px solid chartreuse;
+}
+.br-warning {
+    border: 1px solid rgb(255, 238, 0);
+}
+.br-danger {
+    border: 1px solid rgb(214, 43, 0);
+}
+.bg-success {
+    background-color: chartreuse;
+}
+.bg-warning {
+    background-color: rgb(255, 238, 0);
+}
+.bg-danger {
+    background-color: rgb(214, 43, 0);
+}
 .auth {
     display: flex;
     justify-content: center;
@@ -34,4 +53,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.post-detail {
+    box-shadow: 3px 7px 3px 3px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.post-detail_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: cadetblue;
+    padding: 0 1.5rem;
+}
+.post-detail_header .post-controll button {
+    margin: 0 1rem;
+    border: none;
+    background-color: transparent;
+}
+.form-add-post {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+.form-add-post form {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px;
+}
+.form-add-post form input,
+textarea {
+    width: 100%;
+    outline: none;
+}
+.hidden {
+    display: none;
 }

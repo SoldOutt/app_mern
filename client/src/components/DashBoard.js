@@ -2,6 +2,8 @@ import React from 'react'
 import { PostContext } from '../contexts/PostContext'
 import { useContext, useEffect, useState } from 'react'
 import Spinner from 'react-bootstrap/esm/Spinner'
+import PostDetail from './PostDetail'
+import FormAddPost from './FormAddPost'
 
 const DashBoard = () => {
     const {
@@ -9,7 +11,7 @@ const DashBoard = () => {
         getAllPosts,
     } = useContext(PostContext)
     useEffect(() => getAllPosts(), [])
-
+    const { showFormAddPost, setShowFormAddPost } = useContext(PostContext)
     let body
 
     if (postsLoading) {
@@ -26,15 +28,27 @@ const DashBoard = () => {
         )
     } else {
         console.log(posts)
-        body = posts.map((post) => {
-            ;<h2>a</h2>
-        })
+        body = (
+            <div className="container">
+                <div className="row">
+                    {posts.map((post, idx) => {
+                        return <PostDetail key={idx} data={post} />
+                    })}
+                </div>
+            </div>
+        )
     }
-
+    const openForm = () => {
+        setShowFormAddPost(true)
+    }
     return (
         <>
             <h1>DashBoard</h1>
             {body}
+            <FormAddPost></FormAddPost>
+            <button onClick={openForm} className="btn-floating">
+                Add Post
+            </button>
         </>
     )
 }
