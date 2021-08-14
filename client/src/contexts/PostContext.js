@@ -45,6 +45,23 @@ const PostContextProvider = ({ children }) => {
     }
     // useEffect(() => getAllPosts(), [])
 
+    const deletePost = async (postId) => {
+        try {
+            const response = await axios.delete(`${API_URL}/post/${postId}`)
+            if (response.data.success) {
+                dispatch({
+                    type: 'DELETE_POST',
+                    payload: postId,
+                })
+                return response.data
+            }
+        } catch (err) {
+            return err.response
+                ? err.response.data
+                : { success: false, message: 'server error' }
+        }
+    }
+
     //xuất ra ngoài
     const postContextDate = {
         postState,
@@ -52,6 +69,7 @@ const PostContextProvider = ({ children }) => {
         showFormAddPost,
         setShowFormAddPost,
         saveNewPost,
+        deletePost,
     }
     return (
         <PostContext.Provider value={postContextDate}>

@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const Post = require('../models/Post')
-const verifyToken = require('../middleware/auth');
+const verifyToken = require('../middleware/auth')
 const User = require('../models/User')
-
 
 //[GET] api/post
 router.get('/', verifyToken, async (req, res) => {
@@ -15,7 +14,7 @@ router.get('/', verifyToken, async (req, res) => {
     }
 })
 
-//[POST] api/post 
+//[POST] api/post
 router.post('/', verifyToken, async (req, res) => {
     const { title, description, url, status } = req.body
 
@@ -33,7 +32,7 @@ router.post('/', verifyToken, async (req, res) => {
             description,
             url: url.startsWith('http://') ? url : `http://${url}`,
             status: status || 'To Learn',
-            user: req.userId
+            user: req.userId,
         })
         await newPost.save()
         res.json({ success: true, message: 'Success!', newPost })
@@ -58,14 +57,45 @@ router.put('/:id', verifyToken, async (req, res) => {
         }
         const postUpdateCondition = { _id: req.params.id, user: req.userId } //dieu kien xac thuc de thay doi post
         console.log(postUpdateCondition)
-        updatePost = await Post.findOneAndUpdate(postUpdateCondition, updatePost, { new: true })//dieu kien thay doi, gia tri thay doi, tra ve gia tri la gia tri moi(neu khong sex tra ve gia tri la post cu)
-        //Use not Author to update post 
+        updatePost = await Post.findOneAndUpdate(
+            postUpdateCondition,
+            updatePost,
+            { new: true }
+        ) //dieu kien thay doi, gia tri thay doi, tra ve gia tri la gia tri moi(neu khong sex tra ve gia tri la post cu)
+        //Use not Author to update post
         if (!updatePost) {
-            return res.status(401).json({ success: "false", message: "Post or user not Authorised" })
+            return res.status(401).json({
+                success: 'false',
+                message: 'Post or user not Authorised',
+            })
         }
 
         // await newPost.save()
         res.json({ success: true, message: 'ok update r do', post: updatePost })
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ success: false, message: err.message })
+    }
+})
+//[DELETE] api/post/:id
+router.delete('/:id', verifyToken, async (req, res) => {
+    try {
+        const postDeleteCondition = {
+            _id: req.params.id,
+            user: req.userId,
+        }
+
+        const deletePost = await Post.findOneAndDelete(postDeleteCondition) //dieu kien thay doi, gia tri thay doi, tra ve gia tri la gia tri moi(neu khong sex tra ve gia tri la post cu)
+        //Use not Author to delete post
+        if (!deletePost) {
+            return res.status(401).json({
+                success: 'false',
+                message: 'Post or user not Authorised',
+            })
+        }
+
+        // await newPost.save()
+        res.json({ success: true, message: 'ok delete r do', post: deletePost })
     } catch (err) {
         console.error(err)
         res.status(500).json({ success: false, message: err.message })
