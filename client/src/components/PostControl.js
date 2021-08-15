@@ -2,13 +2,18 @@ import React, { useContext } from 'react'
 // import { Link } from 'react-router-dom'
 import { PostContext } from '../contexts/PostContext'
 const PostControl = ({ link, id }) => {
-    const { deletePost } = useContext(PostContext)
+    const { deletePost, findPost, setShowFormUpdatePost } =
+        useContext(PostContext)
     const clickRemovePost = () => {
         deletePost(id)
     }
+    const editPost = () => {
+        findPost(id)
+        setShowFormUpdatePost(true)
+    }
     return (
         <div className="post-control">
-            <button>
+            <button onClick={editPost}>
                 <i className="fas fa-edit"></i>
             </button>
             <button>

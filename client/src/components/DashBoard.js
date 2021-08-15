@@ -4,11 +4,16 @@ import { useContext, useEffect, useState } from 'react'
 import Spinner from 'react-bootstrap/esm/Spinner'
 import PostDetail from './PostDetail'
 import FormAddPost from './FormAddPost'
+import Toast from 'react-bootstrap/Toast'
+import FormUpdatePost from './FormUpdatePost'
 
 const DashBoard = () => {
     const {
-        postState: { posts, postsLoading },
+        postState: { postUpdate, posts, postsLoading },
         getAllPosts,
+        showToast: { show, message, type },
+        setShowToast,
+        updatePost,
     } = useContext(PostContext)
     useEffect(() => getAllPosts(), [])
     const { showFormAddPost, setShowFormAddPost } = useContext(PostContext)
@@ -27,7 +32,7 @@ const DashBoard = () => {
             </div>
         )
     } else {
-        console.log(posts)
+        // console.log(posts)
         body = (
             <div className="container">
                 <div className="row">
@@ -46,9 +51,24 @@ const DashBoard = () => {
             <h1>DashBoard</h1>
             {body}
             <FormAddPost></FormAddPost>
+            {postUpdate !== null && <FormUpdatePost />}
             <button onClick={openForm} className="btn-floating">
                 Add Post
             </button>
+            <Toast
+                style={{ position: 'fixed', top: '10%', right: '40px' }}
+                show={show}
+                className={`bg-${type} text-white`}
+                onClose={setShowToast.bind(this, {
+                    show: false,
+                    message: '',
+                    type: null,
+                })}
+                delay={2000}
+                autohide
+            >
+                {message}
+            </Toast>
         </>
     )
 }

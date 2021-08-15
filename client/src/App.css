@@ -95,3 +95,11 @@ textarea {
 .hidden {
     display: none;
 }
+.toast {
+    position: fixed;
+    top: 10%;
+    right: 40px;
+    background-color: aqua;
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+}

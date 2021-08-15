@@ -1,37 +1,39 @@
 import React, { useContext, useState } from 'react'
 import { PostContext } from '../contexts/PostContext'
 
-const FormAddPost = () => {
-    const { showFormAddPost, setShowFormAddPost, saveNewPost, setShowToast } =
-        useContext(PostContext)
-    const [formAddPost, setFormAddPost] = useState({
-        title: '',
-        description: '',
-        url: '',
-        status: 'To Learn',
-    })
-    const { title, description, url } = formAddPost
+const FormUpdatePost = () => {
+    const {
+        postState: { postUpdate },
+        showFormUpdatePost,
+        setShowFormUpdatePost,
+        updatePost,
+        setShowToast,
+    } = useContext(PostContext)
+    const [formUpdatePost, setFormUpdatePost] = useState(postUpdate)
+    console.log(postUpdate)
+    console.log(formUpdatePost)
+    const { title, description, url } = formUpdatePost
     const inputChange = (event) => {
-        setFormAddPost({
-            ...formAddPost,
+        setFormUpdatePost({
+            ...formUpdatePost,
             [event.target.name]: event.target.value,
         })
     }
-    const clearForm = () => {
-        setFormAddPost({
-            title: '',
-            description: '',
-            url: '',
-            status: 'To Learn',
-        })
-    }
+    // const clearForm = () => {
+    //     setFormUpdatePost({
+    //         title: '',
+    //         description: '',
+    //         url: '',
+    //         status: 'To Learn',
+    //     })
+    // }
     const closeForm = () => {
-        setShowFormAddPost(false)
-        clearForm()
+        setShowFormUpdatePost(false)
+        // clearForm()
     }
-    const submitNewPost = async (event) => {
+    const submitEditPost = async (event) => {
         event.preventDefault()
-        const { success, message } = await saveNewPost(formAddPost)
+        const { success, message } = await updatePost(formUpdatePost)
         setShowToast({
             show: true,
             message,
@@ -40,9 +42,9 @@ const FormAddPost = () => {
         closeForm()
     }
     return (
-        <div className={`form-add-post ${showFormAddPost ? '' : 'hidden'}`}>
-            <form onSubmit={submitNewPost}>
-                <h3>Your Task you want to note ?? </h3>
+        <div className={`form-add-post ${showFormUpdatePost ? '' : 'hidden'}`}>
+            <form onSubmit={submitEditPost}>
+                <h3>Do you want to change note ?? </h3>
                 <div className="form-controll mb-4">
                     <input
                         type="text"
@@ -83,4 +85,4 @@ const FormAddPost = () => {
     )
 }
 
-export default FormAddPost
+export default FormUpdatePost
