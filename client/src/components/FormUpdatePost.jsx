@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { PostContext } from '../contexts/PostContext'
 
 const FormUpdatePost = () => {
@@ -19,6 +19,9 @@ const FormUpdatePost = () => {
             [event.target.name]: event.target.value,
         })
     }
+    useEffect(() => {
+        setFormUpdatePost(postUpdate, [postUpdate])
+    }, [])
     // const clearForm = () => {
     //     setFormUpdatePost({
     //         title: '',
