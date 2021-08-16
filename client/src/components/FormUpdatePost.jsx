@@ -10,9 +10,7 @@ const FormUpdatePost = () => {
         setShowToast,
     } = useContext(PostContext)
     const [formUpdatePost, setFormUpdatePost] = useState(postUpdate)
-    console.log(postUpdate)
-    console.log(formUpdatePost)
-    const { title, description, url } = formUpdatePost
+    const { title, description, url, status } = formUpdatePost
     const inputChange = (event) => {
         setFormUpdatePost({
             ...formUpdatePost,
@@ -20,8 +18,8 @@ const FormUpdatePost = () => {
         })
     }
     useEffect(() => {
-        setFormUpdatePost(postUpdate, [postUpdate])
-    }, [])
+        setFormUpdatePost(postUpdate)
+    }, [postUpdate])
     // const clearForm = () => {
     //     setFormUpdatePost({
     //         title: '',
@@ -74,6 +72,13 @@ const FormUpdatePost = () => {
                         value={url}
                         onChange={inputChange}
                     />
+                </div>
+                <div className="form-controll mb-4">
+                    <select name="status" value={status} onChange={inputChange}>
+                        <option value="To Learn">To Learn</option>
+                        <option value="Learned">Learned</option>
+                        <option value="Learning">Learning</option>
+                    </select>
                 </div>
                 <button className="btn btn-primary ">Submit</button>
                 <button
