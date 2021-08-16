@@ -47,12 +47,16 @@ const DashBoard = () => {
         setShowFormAddPost(true)
     }
     return (
-        <>
+        <div style={{ position: 'relative' }}>
             <h1>DashBoard</h1>
             {body}
             <FormAddPost></FormAddPost>
             {postUpdate !== null && <FormUpdatePost />}
-            <button onClick={openForm} className="btn-floating">
+            <button
+                onClick={openForm}
+                style={{ position: 'absolute', right: '10%', bottom: '10%' }}
+                className="btn-floating btn btn-primary"
+            >
                 Add Post
             </button>
             <Toast
@@ -69,7 +73,7 @@ const DashBoard = () => {
             >
                 {message}
             </Toast>
-        </>
+        </div>
     )
 }
 
