@@ -3,7 +3,6 @@ import { createContext, useReducer, useEffect } from 'react'
 import axios from 'axios'
 import { authReducer } from '../reducers/authReducer'
 import setAuthToken from '../utils/setAuthToken'
-import { useHistory } from 'react-router-dom'
 export const AuthContext = createContext()
 const AuthContextProvider = ({ children }) => {
     const [authState, dispatch] = useReducer(authReducer, {

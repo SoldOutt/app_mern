@@ -25,7 +25,7 @@ const Login = () => {
         try {
             const loginData = await loginUser(loginForm)
             console.log(loginData)
-            if (loginData.success) history.push('/dashboard')
+            if (loginData.success) history.push('/')
             else {
                 setAlert({ type: 'danger', message: loginData.message })
             }
